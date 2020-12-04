@@ -1,0 +1,29 @@
+---
+title: "Final Project Proposal"
+author: "Abby Harris"
+date: "12/3/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = FALSE, tidy = TRUE)
+```
+
+## 1. My Blog Link
+My blog is available at [https://abbyharris.netlify.app/](https://abbyharris.netlify.app/) 
+
+
+
+## 2. Spotify Songs
+```{r, message=FALSE, error = FALSE, warning = FALSE}
+library(here)
+library(tidyverse)
+library(ggplot2)
+library(readxl)
+
+dat <- read_csv(here::here("tidytuesday", "data", "2020", "2020-01-21", "spotify_songs.csv"))
+
+glimpse(dat)
+```
+
+This data set comes from the `spotify_songs.csv` file on the Tidy Tuesday website. The data consists of 32,833 observations of 23 variables. The variables `track_id`, `track_album_id`, and `playlist_id` are all unique IDs for the track, album, and playlist, respectively. The variables `track_name`, `track_artist`, `track_album_id`, `track_album_name`, and `track_album_release_date` are all variables that give details on the track to help with identification. The variables `playlist_name`, `playlist_genre`, and `playlist_subgenre` give information on what type of track it is, in other words what type of playlists it is on. The  variables, `danceability`, `energy`, `key`, `loudness`, `mode`, `speechiness`, `acousticness`, `instrumentalness`, `liveness`, `valence`, and `tempo` describe different characteristics of the track using a numeric scale. The last variable `duration_ms` gives the duration of the track in milliseconds.
