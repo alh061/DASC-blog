@@ -1,0 +1,126 @@
+---
+title: "Final Project Proposal"
+author: "Abby Harris"
+date: "12/3/2020"
+output: pdf_document
+---
+
+<link href="/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
+
+
+<div id="my-blog-link" class="section level2">
+<h2>1. My Blog Link</h2>
+<p>My blog is available at <a href="https://abbyharris.netlify.app/">https://abbyharris.netlify.app/</a></p>
+</div>
+<div id="spotify-songs" class="section level2">
+<h2>2. Spotify Songs</h2>
+<pre class="r"><code>library(here)
+library(tidyverse)
+library(ggplot2)
+library(readxl)
+
+dat1 &lt;- read_csv(here::here(&quot;tidytuesday&quot;, &quot;data&quot;, &quot;2020&quot;, &quot;2020-01-21&quot;, &quot;spotify_songs.csv&quot;))
+
+glimpse(dat1)</code></pre>
+<pre><code>## Observations: 32,833
+## Variables: 23
+## $ track_id                 &lt;chr&gt; &quot;6f807x0ima9a1j3VPbc7VN&quot;, &quot;0r7CVbZTWZgbTCYdf…
+## $ track_name               &lt;chr&gt; &quot;I Don&#39;t Care (with Justin Bieber) - Loud Lu…
+## $ track_artist             &lt;chr&gt; &quot;Ed Sheeran&quot;, &quot;Maroon 5&quot;, &quot;Zara Larsson&quot;, &quot;T…
+## $ track_popularity         &lt;dbl&gt; 66, 67, 70, 60, 69, 67, 62, 69, 68, 67, 58, …
+## $ track_album_id           &lt;chr&gt; &quot;2oCs0DGTsRO98Gh5ZSl2Cx&quot;, &quot;63rPSO264uRjW1X5E…
+## $ track_album_name         &lt;chr&gt; &quot;I Don&#39;t Care (with Justin Bieber) [Loud Lux…
+## $ track_album_release_date &lt;chr&gt; &quot;2019-06-14&quot;, &quot;2019-12-13&quot;, &quot;2019-07-05&quot;, &quot;2…
+## $ playlist_name            &lt;chr&gt; &quot;Pop Remix&quot;, &quot;Pop Remix&quot;, &quot;Pop Remix&quot;, &quot;Pop …
+## $ playlist_id              &lt;chr&gt; &quot;37i9dQZF1DXcZDD7cfEKhW&quot;, &quot;37i9dQZF1DXcZDD7c…
+## $ playlist_genre           &lt;chr&gt; &quot;pop&quot;, &quot;pop&quot;, &quot;pop&quot;, &quot;pop&quot;, &quot;pop&quot;, &quot;pop&quot;, &quot;p…
+## $ playlist_subgenre        &lt;chr&gt; &quot;dance pop&quot;, &quot;dance pop&quot;, &quot;dance pop&quot;, &quot;danc…
+## $ danceability             &lt;dbl&gt; 0.748, 0.726, 0.675, 0.718, 0.650, 0.675, 0.…
+## $ energy                   &lt;dbl&gt; 0.916, 0.815, 0.931, 0.930, 0.833, 0.919, 0.…
+## $ key                      &lt;dbl&gt; 6, 11, 1, 7, 1, 8, 5, 4, 8, 2, 6, 8, 1, 5, 5…
+## $ loudness                 &lt;dbl&gt; -2.634, -4.969, -3.432, -3.778, -4.672, -5.3…
+## $ mode                     &lt;dbl&gt; 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0,…
+## $ speechiness              &lt;dbl&gt; 0.0583, 0.0373, 0.0742, 0.1020, 0.0359, 0.12…
+## $ acousticness             &lt;dbl&gt; 0.10200, 0.07240, 0.07940, 0.02870, 0.08030,…
+## $ instrumentalness         &lt;dbl&gt; 0.00e+00, 4.21e-03, 2.33e-05, 9.43e-06, 0.00…
+## $ liveness                 &lt;dbl&gt; 0.0653, 0.3570, 0.1100, 0.2040, 0.0833, 0.14…
+## $ valence                  &lt;dbl&gt; 0.518, 0.693, 0.613, 0.277, 0.725, 0.585, 0.…
+## $ tempo                    &lt;dbl&gt; 122.036, 99.972, 124.008, 121.956, 123.976, …
+## $ duration_ms              &lt;dbl&gt; 194754, 162600, 176616, 169093, 189052, 1630…</code></pre>
+<p>This data set comes from the <code>spotify_songs.csv</code> file on the Tidy Tuesday website. The data consists of 32,833 observations of 23 variables. The variables <code>track_id</code>, <code>track_album_id</code>, and <code>playlist_id</code> are all unique IDs for the track, album, and playlist, respectively. The variables <code>track_name</code>, <code>track_artist</code>, <code>track_album_id</code>, <code>track_album_name</code>, and <code>track_album_release_date</code> are all variables that give details on the track to help with identification. The variables <code>playlist_name</code>, <code>playlist_genre</code>, and <code>playlist_subgenre</code> give information on what type of track it is, in other words what type of playlists it is on. The variables, <code>danceability</code>, <code>energy</code>, <code>key</code>, <code>loudness</code>, <code>mode</code>, <code>speechiness</code>, <code>acousticness</code>, <code>instrumentalness</code>, <code>liveness</code>, <code>valence</code>, and <code>tempo</code> describe different characteristics of the track using a numeric scale. The last variable <code>duration_ms</code> gives the duration of the track in milliseconds.</p>
+<ul>
+<li>Question 1: Is there a positive correlation between the danceability and the popularity of the track?
+<ul>
+<li>I will explore this by creating a scatterplot of danceability and popularity of a track. I will also explore how other factors are grouped within the scatterplot using color or facets on different variables.<br />
+</li>
+</ul></li>
+<li>Question 2: The valence of the track determines if it sounds happy or sad, does the valence change throughout the seasons of the year?
+<ul>
+<li>I will explore this by plotting the valence of a song vs. the release date of a song using a line plot to see if there is a difference in the numerical value of valence across the year. For instance, is valence higher (indicating a happier song) during summer months as opposed to songs released in the winter.</li>
+</ul></li>
+<li>Question 3: What is the distribution of speechiness?
+<ul>
+<li>I will explore this by creating a histogram of the speechiness value (indicates if a song is almost all words or mostly music) and how the distribution changes when it is broken down into other variables.</li>
+</ul></li>
+<li>Question 4: Does the duration of a track impact the popularity?
+<ul>
+<li>I will explore this by plotting the duration of the song against the popularity of the track variable to determine what legnth of track is ideal to give the highest possible popularity.</li>
+</ul></li>
+</ul>
+</div>
+<div id="tennis-grand-slams" class="section level2">
+<h2>3. Tennis Grand Slams</h2>
+<pre class="r"><code>dat2 &lt;- read_csv(here::here(&quot;tidytuesday&quot;, &quot;data&quot;, &quot;2019&quot;, &quot;2019-04-09&quot;, &quot;grand_slam_timeline.csv&quot;))
+
+glimpse(dat2)</code></pre>
+<pre><code>## Observations: 12,605
+## Variables: 5
+## $ player     &lt;chr&gt; &quot;Margaret Court&quot;, &quot;Billie Jean Moffitt King&quot;, &quot;Maria Bueno…
+## $ year       &lt;dbl&gt; 1968, 1968, 1968, 1968, 1968, 1968, 1968, 1968, 1968, 1968…
+## $ tournament &lt;chr&gt; &quot;Australian Open&quot;, &quot;Australian Open&quot;, &quot;Australian Open&quot;, &quot;…
+## $ outcome    &lt;chr&gt; &quot;Finalist&quot;, &quot;Won&quot;, &quot;Absent&quot;, &quot;Absent&quot;, &quot;Absent&quot;, &quot;Semi-fin…
+## $ gender     &lt;chr&gt; &quot;Female&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Female&quot;…</code></pre>
+<pre class="r"><code>dat3 &lt;- read_csv(here::here(&quot;tidytuesday&quot;, &quot;data&quot;, &quot;2019&quot;, &quot;2019-04-09&quot;, &quot;grand_slams.csv&quot;))
+
+glimpse(dat3)</code></pre>
+<pre><code>## Observations: 416
+## Variables: 6
+## $ year              &lt;dbl&gt; 1968, 1968, 1968, 1968, 1969, 1969, 1969, 1969, 197…
+## $ grand_slam        &lt;chr&gt; &quot;australian_open&quot;, &quot;french_open&quot;, &quot;wimbledon&quot;, &quot;us_…
+## $ name              &lt;chr&gt; &quot;Billie Jean King&quot;, &quot;Nancy Richey&quot;, &quot;Billie Jean Ki…
+## $ rolling_win_count &lt;dbl&gt; 1, 1, 2, 1, 1, 2, 1, 3, 4, 5, 6, 7, 8, 1, 2, 3, 2, …
+## $ tournament_date   &lt;date&gt; 1968-01-10, 1968-06-09, 1968-07-14, 1968-09-09, 19…
+## $ gender            &lt;chr&gt; &quot;Female&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;…</code></pre>
+<pre class="r"><code>dat4 &lt;- read_csv(here::here(&quot;tidytuesday&quot;, &quot;data&quot;, &quot;2019&quot;, &quot;2019-04-09&quot;, &quot;player_dob.csv&quot;))
+
+glimpse(dat4)</code></pre>
+<pre><code>## Observations: 105
+## Variables: 5
+## $ name                &lt;chr&gt; &quot;Nancy Richey&quot;, &quot;Virginia Wade&quot;, &quot;Billie Jean Kin…
+## $ grand_slam          &lt;chr&gt; &quot;French Open&quot;, &quot;US Open&quot;, &quot;Wimbledon&quot;, &quot;Australia…
+## $ date_of_birth       &lt;date&gt; 1942-08-23, 1945-07-10, 1943-11-22, 1942-07-16, …
+## $ date_of_first_title &lt;date&gt; 1968-06-08, 1968-09-07, 1968-07-05, 1969-01-26, …
+## $ age                 &lt;dbl&gt; 9421, 8460, 8992, 9691, 7249, 7116, 7360, 10747, …</code></pre>
+<p>The first data set comes from the <code>grand_slam_timeline.csv</code> file on the Tidy Tuesday website. The data set has 12,605 observations of 5 variables. The variables are fairly self-explanatory, <code>player</code> is the name of the player, <code>year</code> is the year of the tournament, <code>tournament</code> gives the name of the tournament, <code>outcome</code> gives what position in the tournament the player finished, and <code>gender</code> gives the gender of the player.
+The second data set comes from the <code>grand_slams.csv</code> file on the Tidy Tuesday website. This data set has only 416 observations on 6 variables. This data set provides the same variables <code>year</code> and <code>gender</code> as the previous data set. Similarly, <code>grand_slam</code> provides the same information as <code>tournament</code> in the previous data set, and <code>name</code> provides the same information as <code>player</code>. This data set additionally provides the <code>rolling_win_count</code> which gives the total number of wins for the player at the time of that tournament, and <code>tournament_date</code> which gives the approximate date that the tournament took place.
+The third data set comes from the <code>player_dob.csv</code> file on the Tidy Tuesday website. This data set has 105 observations of 5 variables. The <code>name</code> variable is the same as in the previous data set. For this data set, <code>grand_slam</code> indicates what tournament the player was playing at when they won their first grand slam. <code>date_of_first_title</code> gives the date at which this occurs. <code>date_of_birth</code> gives the date of birth of the player, allowing <code>age</code> to be calculated by finding the difference in number of days between the <code>date_of_first_title</code> and <code>date_of_birth</code> to give the age at the time of first grand slam championship.</p>
+<ul>
+<li>Question 1: What grand slam is most common to win a first title at?
+<ul>
+<li>I will explore this by using the third data set to create a bar chart displaying how many players won their first grand slam at a given tournament. This could also be explored with facets such as age and gender.</li>
+</ul></li>
+<li>Question 2: Do players that are younger at the time of first grand slam win more tournaments overall?
+<ul>
+<li>I will analyze this by plotting the age at first win vs. number of rolling wins at the end of the data set. This could also be analyzed broken down into gender categories.</li>
+</ul></li>
+<li>Question 3: How does the age of first title won differ between males and females?
+<ul>
+<li>This can be analyzed by creating a histogram of the age at which the first title is won and faceting by gender.</li>
+</ul></li>
+<li>Question 4: What tournament was most frequently missed?
+<ul>
+<li>This can be found by creating a bar chart of the tournaments and the counts of the number of players that were absent from the tournament. Additionally this could be split into male and female categories.</li>
+</ul></li>
+</ul>
+</div>
