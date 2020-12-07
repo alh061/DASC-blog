@@ -20,7 +20,7 @@ library(tidyverse)
 library(ggplot2)
 library(readxl)
 
-dat1 &lt;- read_csv(here::here(&quot;tidytuesday&quot;, &quot;data&quot;, &quot;2020&quot;, &quot;2020-01-21&quot;, &quot;spotify_songs.csv&quot;))
+dat1 &lt;- read_csv(here::here(&quot;data&quot;, &quot;spotify_songs.csv&quot;))
 
 glimpse(dat1)</code></pre>
 <pre><code>## Observations: 32,833
@@ -71,7 +71,7 @@ glimpse(dat1)</code></pre>
 </div>
 <div id="tennis-grand-slams" class="section level2">
 <h2>3. Tennis Grand Slams</h2>
-<pre class="r"><code>dat2 &lt;- read_csv(here::here(&quot;tidytuesday&quot;, &quot;data&quot;, &quot;2019&quot;, &quot;2019-04-09&quot;, &quot;grand_slam_timeline.csv&quot;))
+<pre class="r"><code>dat2 &lt;- read_csv(here::here(&quot;data&quot;, &quot;grand_slam_timeline.csv&quot;))
 
 glimpse(dat2)</code></pre>
 <pre><code>## Observations: 12,605
@@ -81,7 +81,7 @@ glimpse(dat2)</code></pre>
 ## $ tournament &lt;chr&gt; &quot;Australian Open&quot;, &quot;Australian Open&quot;, &quot;Australian Open&quot;, &quot;…
 ## $ outcome    &lt;chr&gt; &quot;Finalist&quot;, &quot;Won&quot;, &quot;Absent&quot;, &quot;Absent&quot;, &quot;Absent&quot;, &quot;Semi-fin…
 ## $ gender     &lt;chr&gt; &quot;Female&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Female&quot;…</code></pre>
-<pre class="r"><code>dat3 &lt;- read_csv(here::here(&quot;tidytuesday&quot;, &quot;data&quot;, &quot;2019&quot;, &quot;2019-04-09&quot;, &quot;grand_slams.csv&quot;))
+<pre class="r"><code>dat3 &lt;- read_csv(here::here(&quot;data&quot;, &quot;grand_slams.csv&quot;))
 
 glimpse(dat3)</code></pre>
 <pre><code>## Observations: 416
@@ -92,7 +92,7 @@ glimpse(dat3)</code></pre>
 ## $ rolling_win_count &lt;dbl&gt; 1, 1, 2, 1, 1, 2, 1, 3, 4, 5, 6, 7, 8, 1, 2, 3, 2, …
 ## $ tournament_date   &lt;date&gt; 1968-01-10, 1968-06-09, 1968-07-14, 1968-09-09, 19…
 ## $ gender            &lt;chr&gt; &quot;Female&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;…</code></pre>
-<pre class="r"><code>dat4 &lt;- read_csv(here::here(&quot;tidytuesday&quot;, &quot;data&quot;, &quot;2019&quot;, &quot;2019-04-09&quot;, &quot;player_dob.csv&quot;))
+<pre class="r"><code>dat4 &lt;- read_csv(here::here(&quot;data&quot;, &quot;player_dob.csv&quot;))
 
 glimpse(dat4)</code></pre>
 <pre><code>## Observations: 105

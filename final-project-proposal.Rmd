@@ -21,7 +21,7 @@ library(tidyverse)
 library(ggplot2)
 library(readxl)
 
-dat1 <- read_csv(here::here("tidytuesday", "data", "2020", "2020-01-21", "spotify_songs.csv"))
+dat1 <- read_csv(here::here("data", "spotify_songs.csv"))
 
 glimpse(dat1)
 
@@ -46,16 +46,16 @@ This data set comes from the `spotify_songs.csv` file on the Tidy Tuesday websit
 ## 3. Tennis Grand Slams
 ```{r, message=FALSE, error = FALSE, warning = FALSE}
 
-dat2 <- read_csv(here::here("tidytuesday", "data", "2019", "2019-04-09", "grand_slam_timeline.csv"))
+dat2 <- read_csv(here::here("data", "grand_slam_timeline.csv"))
 
 glimpse(dat2)
 
 
-dat3 <- read_csv(here::here("tidytuesday", "data", "2019", "2019-04-09", "grand_slams.csv"))
+dat3 <- read_csv(here::here("data", "grand_slams.csv"))
 
 glimpse(dat3)
 
-dat4<- read_csv(here::here("tidytuesday", "data", "2019", "2019-04-09", "player_dob.csv"))
+dat4<- read_csv(here::here("data", "player_dob.csv"))
 
 glimpse(dat4)
 
