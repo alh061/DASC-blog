@@ -17,5 +17,9 @@ library(readxl)
 
 dat1 <- read_csv(here::here("data", "spotify_songs.csv"))
 
-glimpse(dat1)
+dat1 %>%
+  select(danceability, track_popularity) %>%
+  ggplot(., aes(x = danceability, y = track_popularity)) +
+  geom_point(alpha = 0.1) +
+  geom_smooth()
 ```
