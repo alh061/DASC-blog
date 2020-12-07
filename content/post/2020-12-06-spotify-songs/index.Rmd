@@ -9,7 +9,7 @@ tags: []
 
 Spotify Songs
 
-```{r, error=FALSE,warning=FALSE}
+```{r, error=FALSE,warning=FALSE, message=FALSE}
 library(here)
 library(tidyverse)
 library(ggplot2)
