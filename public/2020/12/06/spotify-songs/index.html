@@ -6,8 +6,8 @@
 <meta name="generator" content="Hugo 0.79.0" />
 
 
-<title>About - DASC 1104 Blog</title>
-<meta property="og:title" content="About - DASC 1104 Blog">
+<title>Spotify Songs - DASC 1104 Blog</title>
+<meta property="og:title" content="Spotify Songs - DASC 1104 Blog">
 
 
   <link href='/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -19,6 +19,11 @@
 
 
 
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
 
 
 
@@ -57,13 +62,35 @@
 
   <article class="article">
     
+    <span class="article-duration">1 min read</span>
+    
 
-    <h1 class="article-title">About</h1>
+    <h1 class="article-title">Spotify Songs</h1>
 
+    
+    <span class="article-date">2020-12-06</span>
     
 
     <div class="article-content">
-      <p>This is a &ldquo;hello world&rdquo; example website for the <a href="https://github.com/rstudio/blogdown"><strong>blogdown</strong></a> package. The theme was forked from <a href="https://github.com/jrutheiser/hugo-lithium-theme">@jrutheiser/hugo-lithium-theme</a> and modified by <a href="https://github.com/yihui/hugo-lithium">Yihui Xie</a>.</p>
+      
+<link href="index_files/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="index_files/anchor-sections/anchor-sections.js"></script>
+
+
+<p>Spotify Songs</p>
+<pre class="r"><code>library(here)
+library(tidyverse)
+library(ggplot2)
+library(readxl)
+
+dat1 &lt;- read_csv(here::here(&quot;data&quot;, &quot;spotify_songs.csv&quot;))
+
+dat1 %&gt;%
+  select(danceability, track_popularity) %&gt;%
+  ggplot(., aes(x = danceability, y = track_popularity)) +
+  geom_point(alpha = 0.1) +
+  geom_smooth()</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 
     </div>
   </article>
@@ -86,6 +113,18 @@
 
     </div>
     
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
 
     
 
