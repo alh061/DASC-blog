@@ -20,7 +20,7 @@ This data set comes from the `spotify_songs.csv` file on the Tidy Tuesday websit
 * Question 4: Does the duration of a track impact the popularity?
   * I will explore this by plotting the duration of the song against the popularity of the track variable to determine what legnth of track is ideal to give the highest possible popularity. 
 
-```{r, error=FALSE,warning=FALSE, message=FALSE}
+```{r, error=FALSE,warning=FALSE, message=FALSE, echo=FALSE}
 library(here)
 library(tidyverse)
 library(ggplot2)

@@ -28,28 +28,5 @@ tags: []
 <li>I will explore this by plotting the duration of the song against the popularity of the track variable to determine what legnth of track is ideal to give the highest possible popularity.</li>
 </ul></li>
 </ul>
-<pre class="r"><code>library(here)
-library(tidyverse)
-library(ggplot2)
-library(readxl)
-
-dat1 &lt;- read_csv(here::here(&quot;data&quot;, &quot;spotify_songs.csv&quot;))
-
-dat1 %&gt;%
-  ggplot(., aes(x = danceability, y = track_popularity)) +
-  geom_point(alpha = 0.1) +
-  geom_smooth() + 
-  ggtitle(&quot;Track Popularity vs. Danceability&quot;) +
-  xlab(&quot;Danceability&quot;) + 
-  ylab(&quot;Track Popularity&quot;)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<pre class="r"><code>dat1 %&gt;%
-  ggplot(., aes(x = danceability, y = track_popularity)) +
-  geom_point(alpha = 0.1) +
-  geom_smooth() + 
-  ggtitle(&quot;Track Popularity vs. Danceability Broken Up by Playlist Genre&quot;) +
-  xlab(&quot;Danceability&quot;) + 
-  ylab(&quot;Track Popularity&quot;) +
-  facet_wrap(&quot;playlist_genre&quot;)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" width="672" /><img src="index_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
 <p>The graphs above show that overall, the danceability does not have much of an impact on the popularity of a track, unless the danceability indicator is 0.75 or above, and then danceability does have a positive impact on the track popularity. However, as seen in the second graphic, danceability has a greater impact on popularity depending on the genre of the playlist the track appears on. R&amp;B and Rock tracks show similar patterns to that of the overall effect of danceability on popularity. While, EDM and Latin playlist generes show a decrease in track popularity as the danceability increases. For Pop and Rap however, a consistent increase is seen in popularity as the dacneaility increases.</p>
