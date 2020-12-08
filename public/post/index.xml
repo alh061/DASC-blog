@@ -13,8 +13,8 @@
       <pubDate>Sun, 06 Dec 2020 00:00:00 +0000</pubDate>
       
       <guid>/2020/12/06/spotify-songs/</guid>
-      <description>  Spotify Songs
-library(here) library(tidyverse) library(ggplot2) library(readxl) dat1 &amp;lt;- read_csv(here::here(&amp;quot;data&amp;quot;, &amp;quot;spotify_songs.csv&amp;quot;)) dat1 %&amp;gt;% select(danceability, track_popularity) %&amp;gt;% ggplot(., aes(x = danceability, y = track_popularity)) + geom_point(alpha = 0.1) + geom_smooth() </description>
+      <description>Spotify Songs
+This data set comes from the spotify_songs.csv file on the Tidy Tuesday website. The data consists of 32,833 observations of 23 variables. The variables track_id, track_album_id, and playlist_id are all unique IDs for the track, album, and playlist, respectively. The variables track_name, track_artist, track_album_id, track_album_name, and track_album_release_date are all variables that give details on the track to help with identification. The variables playlist_name, playlist_genre, and playlist_subgenre give information on what type of track it is, in other words what type of playlists it is on.</description>
     </item>
     
   </channel>

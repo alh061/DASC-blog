@@ -14,19 +14,25 @@ tags: []
 <p>Spotify Songs</p>
 <p>This data set comes from the <code>spotify_songs.csv</code> file on the Tidy Tuesday website. The data consists of 32,833 observations of 23 variables. The variables <code>track_id</code>, <code>track_album_id</code>, and <code>playlist_id</code> are all unique IDs for the track, album, and playlist, respectively. The variables <code>track_name</code>, <code>track_artist</code>, <code>track_album_id</code>, <code>track_album_name</code>, and <code>track_album_release_date</code> are all variables that give details on the track to help with identification. The variables <code>playlist_name</code>, <code>playlist_genre</code>, and <code>playlist_subgenre</code> give information on what type of track it is, in other words what type of playlists it is on. The variables, <code>danceability</code>, <code>energy</code>, <code>key</code>, <code>loudness</code>, <code>mode</code>, <code>speechiness</code>, <code>acousticness</code>, <code>instrumentalness</code>, <code>liveness</code>, <code>valence</code>, and <code>tempo</code> describe different characteristics of the track using a numeric scale. The last variable <code>duration_ms</code> gives the duration of the track in milliseconds.</p>
 <ul>
-<li><p>Question 1: Is there a positive correlation between the danceability and the popularity of the track?</p></li>
-<li><p>Question 2: The valence of the track determines if it sounds happy or sad, does the valence change throughout the seasons of the year?</p>
+<li>Question 1: Is there a positive correlation between the danceability and the popularity of the track?</li>
+</ul>
+<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" width="672" /><img src="index_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
+<p>The graphs above show that overall, the danceability does not have much of an impact on the popularity of a track, unless the danceability indicator is 0.75 or above, and then danceability does have a positive impact on the track popularity. However, as seen in the second graphic, danceability has a greater impact on popularity depending on the genre of the playlist the track appears on. R&amp;B and Rock tracks show similar patterns to that of the overall effect of danceability on popularity. While, EDM and Latin playlist genres show a decrease in track popularity as the danceability increases. For Pop and Rap however, a consistent increase is seen in popularity as the danceability increases.</p>
+<ul>
+<li>Question 2: The valence of the track determines if it sounds happy or sad, does the valence change throughout the seasons of the year?
 <ul>
 <li>I will explore this by plotting the valence of a song vs. the release date of a song using a line plot to see if there is a difference in the numerical value of valence across the year. For instance, is valence higher (indicating a happier song) during summer months as opposed to songs released in the winter.</li>
 </ul></li>
-<li><p>Question 3: What is the distribution of speechiness?</p>
+</ul>
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+The graph above shows the average valence of songs that are released in a certain month and how it changes over the course of a year. A higher valence indicates a happier, more upbeat sounding song, so I predicted that the average valence would be higher for songs released during spring and summer months. For the most part this is true, with the exception of songs that are released in January, have the highest valence of all months. Additionally, the average valence does not change much over the course of the year, there is only about a 0.05 difference in the valence level between January, the highest month, and December, the lowest month.</p>
+<ul>
+<li>Question 3: What is the distribution of speechiness?
 <ul>
 <li>I will explore this by creating a histogram of the speechiness value (indicates if a song is almost all words or mostly music) and how the distribution changes when it is broken down into other variables.</li>
 </ul></li>
-<li><p>Question 4: Does the duration of a track impact the popularity?</p>
+<li>Question 4: Does the duration of a track impact the popularity?
 <ul>
 <li>I will explore this by plotting the duration of the song against the popularity of the track variable to determine what legnth of track is ideal to give the highest possible popularity.</li>
 </ul></li>
 </ul>
-<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" width="672" /><img src="index_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
-<p>The graphs above show that overall, the danceability does not have much of an impact on the popularity of a track, unless the danceability indicator is 0.75 or above, and then danceability does have a positive impact on the track popularity. However, as seen in the second graphic, danceability has a greater impact on popularity depending on the genre of the playlist the track appears on. R&amp;B and Rock tracks show similar patterns to that of the overall effect of danceability on popularity. While, EDM and Latin playlist generes show a decrease in track popularity as the danceability increases. For Pop and Rap however, a consistent increase is seen in popularity as the dacneaility increases.</p>
