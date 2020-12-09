@@ -9,6 +9,15 @@ tags: []
 
 # Spotify Songs
 
+```{r, error=FALSE,warning=FALSE, message=FALSE}
+library(here)
+library(tidyverse)
+library(ggplot2)
+library(readxl)
+
+dat <- read_csv(here::here("data", "spotify_songs.csv"))
+```
+
 This data set comes from the `spotify_songs.csv` file on the Tidy Tuesday website. The data consists of 32,833 observations of 23 variables. The variables `track_id`, `track_album_id`, and `playlist_id` are all unique IDs for the track, album, and playlist, respectively. The variables `track_name`, `track_artist`, `track_album_id`, `track_album_name`, and `track_album_release_date` are all variables that give details on the track to help with identification. The variables `playlist_name`, `playlist_genre`, and `playlist_subgenre` give information on what type of track it is, in other words what type of playlists it is on. The  variables, `danceability`, `energy`, `key`, `loudness`, `mode`, `speechiness`, `acousticness`, `instrumentalness`, `liveness`, `valence`, and `tempo` describe different characteristics of the track using a numeric scale. The last variable `duration_ms` gives the duration of the track in milliseconds.
 
   
@@ -16,14 +25,8 @@ This data set comes from the `spotify_songs.csv` file on the Tidy Tuesday websit
 Is there a positive correlation between the danceability and the popularity of the track?
 
 ```{r, error=FALSE,warning=FALSE, message=FALSE}
-library(here)
-library(tidyverse)
-library(ggplot2)
-library(readxl)
 
-dat1 <- read_csv(here::here("data", "spotify_songs.csv"))
-
-dat1 %>%
+dat %>%
   ggplot(., aes(x = danceability, y = track_popularity)) +
   geom_point(alpha = 0.1) +
   geom_smooth() + 
@@ -31,7 +34,7 @@ dat1 %>%
   xlab("Danceability") + 
   ylab("Track Popularity")
 
-dat1 %>%
+dat %>%
   ggplot(., aes(x = danceability, y = track_popularity)) +
   geom_point(alpha = 0.1) +
   geom_smooth() + 
@@ -51,7 +54,7 @@ The valence of the track determines if it sounds happy or sad, does the valence 
 ```{r, error=FALSE,warning=FALSE, message=FALSE}
 library(tidyr)
 
-dat1 %>%
+dat %>%
   separate(., "track_album_release_date", c("Year", "Month", "Day"), sep = "-" ) %>%
   group_by(Month) %>%
   summarise(average_valence = mean(valence, na.rm = TRUE)) %>%
@@ -72,14 +75,14 @@ What is the distribution of speechiness?
 Speechiness is defined as the presence of spoken word in a track. Speechiness variables close to 1 are predominately words, like a podcast or talk show. Speechiness above 0.66 are mostly spoken word, between 0.33 and 0.66 may include both music and words, and below 0.33 indicates mostly music. 
 
 ```{r, error=FALSE,warning=FALSE, message=FALSE}
-dat1 %>%
+dat %>%
   ggplot(., aes(x = speechiness)) +
   geom_histogram() +
   ggtitle("Distribution of Speechiness in Tracks") + 
   xlab("Speechiness") +
   ylab("Count of Tracks")
 
-dat1 %>%
+dat %>%
   ggplot(., aes(x = speechiness)) +
   geom_histogram() +
   facet_wrap("playlist_genre") +
@@ -97,11 +100,14 @@ Does the duration of a track impact the popularity?
  
 ```{r, message=FALSE, error=FALSE,warning=FALSE}
 
-dat1 %>%
+dat %>%
   filter(track_popularity > 0.0) %>%
   ggplot(., aes(x = duration_ms, y = track_popularity)) +
   geom_point(alpha = 0.1) +
-  geom_smooth()
+  geom_smooth() +
+  ggtitle("Track Popularity vs. Track Duration in Milliseconds") +
+  xlab("Duration (ms)") +
+  ylab("Track Popularity")
 
 ```
 The graph above plots the popularity of a track versus the duration of the track in milliseconds. The line of best fit shows that the highest possible track popularity occurs around 2e+05 milliseconds, or about 3 minutes and 20 seconds. Additionally, it appears that the majority of tracks regardless of popularity appear to fall close to this time frame. 

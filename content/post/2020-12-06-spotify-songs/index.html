@@ -13,26 +13,25 @@ tags: []
 
 <div id="spotify-songs" class="section level1">
 <h1>Spotify Songs</h1>
-<p>This data set comes from the <code>spotify_songs.csv</code> file on the Tidy Tuesday website. The data consists of 32,833 observations of 23 variables. The variables <code>track_id</code>, <code>track_album_id</code>, and <code>playlist_id</code> are all unique IDs for the track, album, and playlist, respectively. The variables <code>track_name</code>, <code>track_artist</code>, <code>track_album_id</code>, <code>track_album_name</code>, and <code>track_album_release_date</code> are all variables that give details on the track to help with identification. The variables <code>playlist_name</code>, <code>playlist_genre</code>, and <code>playlist_subgenre</code> give information on what type of track it is, in other words what type of playlists it is on. The variables, <code>danceability</code>, <code>energy</code>, <code>key</code>, <code>loudness</code>, <code>mode</code>, <code>speechiness</code>, <code>acousticness</code>, <code>instrumentalness</code>, <code>liveness</code>, <code>valence</code>, and <code>tempo</code> describe different characteristics of the track using a numeric scale. The last variable <code>duration_ms</code> gives the duration of the track in milliseconds.</p>
-<div id="question-1" class="section level2">
-<h2>Question 1</h2>
-<p>Is there a positive correlation between the danceability and the popularity of the track?</p>
 <pre class="r"><code>library(here)
 library(tidyverse)
 library(ggplot2)
 library(readxl)
 
-dat1 &lt;- read_csv(here::here(&quot;data&quot;, &quot;spotify_songs.csv&quot;))
-
-dat1 %&gt;%
+dat &lt;- read_csv(here::here(&quot;data&quot;, &quot;spotify_songs.csv&quot;))</code></pre>
+<p>This data set comes from the <code>spotify_songs.csv</code> file on the Tidy Tuesday website. The data consists of 32,833 observations of 23 variables. The variables <code>track_id</code>, <code>track_album_id</code>, and <code>playlist_id</code> are all unique IDs for the track, album, and playlist, respectively. The variables <code>track_name</code>, <code>track_artist</code>, <code>track_album_id</code>, <code>track_album_name</code>, and <code>track_album_release_date</code> are all variables that give details on the track to help with identification. The variables <code>playlist_name</code>, <code>playlist_genre</code>, and <code>playlist_subgenre</code> give information on what type of track it is, in other words what type of playlists it is on. The variables, <code>danceability</code>, <code>energy</code>, <code>key</code>, <code>loudness</code>, <code>mode</code>, <code>speechiness</code>, <code>acousticness</code>, <code>instrumentalness</code>, <code>liveness</code>, <code>valence</code>, and <code>tempo</code> describe different characteristics of the track using a numeric scale. The last variable <code>duration_ms</code> gives the duration of the track in milliseconds.</p>
+<div id="question-1" class="section level2">
+<h2>Question 1</h2>
+<p>Is there a positive correlation between the danceability and the popularity of the track?</p>
+<pre class="r"><code>dat %&gt;%
   ggplot(., aes(x = danceability, y = track_popularity)) +
   geom_point(alpha = 0.1) +
   geom_smooth() + 
   ggtitle(&quot;Track Popularity vs. Danceability&quot;) +
   xlab(&quot;Danceability&quot;) + 
   ylab(&quot;Track Popularity&quot;)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<pre class="r"><code>dat1 %&gt;%
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>dat %&gt;%
   ggplot(., aes(x = danceability, y = track_popularity)) +
   geom_point(alpha = 0.1) +
   geom_smooth() + 
@@ -40,7 +39,7 @@ dat1 %&gt;%
   xlab(&quot;Danceability&quot;) + 
   ylab(&quot;Track Popularity&quot;) +
   facet_wrap(&quot;playlist_genre&quot;)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
 <p>The graphs above show that overall, the danceability does not have much of an impact on the popularity of a track, unless the danceability indicator is 0.75 or above, and then danceability does have a positive impact on the track popularity. However, as seen in the second graphic, danceability has a greater impact on popularity depending on the genre of the playlist the track appears on. R&amp;B and Rock tracks show similar patterns to that of the overall effect of danceability on popularity. While, EDM and Latin playlist genres show a decrease in track popularity as the danceability increases. For Pop and Rap however, a consistent increase is seen in popularity as the danceability increases.</p>
 </div>
 <div id="question-2" class="section level2">
@@ -48,7 +47,7 @@ dat1 %&gt;%
 <p>The valence of the track determines if it sounds happy or sad, does the valence change throughout the seasons of the year?</p>
 <pre class="r"><code>library(tidyr)
 
-dat1 %&gt;%
+dat %&gt;%
   separate(., &quot;track_album_release_date&quot;, c(&quot;Year&quot;, &quot;Month&quot;, &quot;Day&quot;), sep = &quot;-&quot; ) %&gt;%
   group_by(Month) %&gt;%
   summarise(average_valence = mean(valence, na.rm = TRUE)) %&gt;%
@@ -57,39 +56,42 @@ dat1 %&gt;%
   geom_line(group = 1) + 
   ggtitle(&quot;Average of Valence of Songs Over Each Month&quot;) + 
   ylab(&quot;Average of Valence&quot;)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 The graph above shows the average valence of songs that are released in a certain month and how it changes over the course of a year. A higher valence indicates a happier, more upbeat sounding song, so I predicted that the average valence would be higher for songs released during spring and summer months. For the most part this is true, with the exception of songs that are released in January, have the highest valence of all months. Additionally, the average valence does not change much over the course of the year, there is only about a 0.05 difference in the valence level between January, the highest month, and December, the lowest month.</p>
 </div>
 <div id="question-3" class="section level2">
 <h2>Question 3:</h2>
 <p>What is the distribution of speechiness?</p>
 <p>Speechiness is defined as the presence of spoken word in a track. Speechiness variables close to 1 are predominately words, like a podcast or talk show. Speechiness above 0.66 are mostly spoken word, between 0.33 and 0.66 may include both music and words, and below 0.33 indicates mostly music.</p>
-<pre class="r"><code>dat1 %&gt;%
+<pre class="r"><code>dat %&gt;%
   ggplot(., aes(x = speechiness)) +
   geom_histogram() +
   ggtitle(&quot;Distribution of Speechiness in Tracks&quot;) + 
   xlab(&quot;Speechiness&quot;) +
   ylab(&quot;Count of Tracks&quot;)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<pre class="r"><code>dat1 %&gt;%
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>dat %&gt;%
   ggplot(., aes(x = speechiness)) +
   geom_histogram() +
   facet_wrap(&quot;playlist_genre&quot;) +
   xlab(&quot;Speechiness&quot;) +
   ylab(&quot;Count of Tracks&quot;) +
   ggtitle(&quot;Distribution of Speechiness by Playlist Genre of Track&quot;)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-3-2.png" width="672" />
+<p><img src="index_files/figure-html/unnamed-chunk-4-2.png" width="672" />
 The first graph above that shows the distribution of all tracks with their speechiness variable shows that the majority of Spotify tracks collected in this data set are predominately, if not all, music without words. If just assessing the tracks based on their speechiness value, it would appear that there are very few words spoken in most tracks. The graph does not show hardly any tracks that have a speechiness value that is over 0.50, and not any that are almost 1.0 indicating that there are very few, if any at all, podcasts or spoken word tracks in this sample. However, by breaking down the data into a playlist genre, we are able to see that the speechiness is significantly higher for some genres of music. For example, rap has a much less skewed distribution, and has some tracks with speechiness values greater than 0.75. Whereas genres like rock and pop have an even more severe right skewed distribution showing that almost all of the tracks in these two genres have very few words spoken in them. These graphs could more easily help define what makes a certain track into a genre.</p>
 </div>
 <div id="question-4" class="section level2">
 <h2>Question 4</h2>
 <p>Does the duration of a track impact the popularity?</p>
-<pre class="r"><code>dat1 %&gt;%
+<pre class="r"><code>dat %&gt;%
   filter(track_popularity &gt; 0.0) %&gt;%
   ggplot(., aes(x = duration_ms, y = track_popularity)) +
   geom_point(alpha = 0.1) +
-  geom_smooth()</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+  geom_smooth() +
+  ggtitle(&quot;Track Popularity vs. Track Duration in Milliseconds&quot;) +
+  xlab(&quot;Duration (ms)&quot;) +
+  ylab(&quot;Track Popularity&quot;)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" width="672" />
 The graph above plots the popularity of a track versus the duration of the track in milliseconds. The line of best fit shows that the highest possible track popularity occurs around 2e+05 milliseconds, or about 3 minutes and 20 seconds. Additionally, it appears that the majority of tracks regardless of popularity appear to fall close to this time frame.</p>
 </div>
 </div>
