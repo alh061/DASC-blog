@@ -110,7 +110,7 @@ dat1 %>%
   filter(outcome == "Absent") %>%
   ggplot(., aes(x = tournament)) +
   geom_bar() +
-  ggtitle("ount of the Number of People That Missed Each Grand Slam") +
+  ggtitle("Count of the Number of People That Missed Each Grand Slam") +
   xlab("Tournament") +
   ylab("Count of players")
 
