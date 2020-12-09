@@ -1,6 +1,6 @@
 ---
-title: Tennis Grand Slams
-author: ~
+title: "Tennis Grand Slams"
+author: 'null'
 date: '2020-12-08'
 slug: tennis-grand-slams
 categories: []
@@ -16,7 +16,6 @@ tags: []
 <pre class="r"><code>library(here)
 library(tidyverse)
 library(ggplot2)
-library(readxl)
 
 dat1 &lt;- read_csv(here::here(&quot;data&quot;, &quot;grand_slam_timeline.csv&quot;))
   
@@ -98,7 +97,7 @@ dat3 &lt;- read_csv(here::here(&quot;data&quot;, &quot;player_dob.csv&quot;))</c
   filter(outcome == &quot;Absent&quot;) %&gt;%
   ggplot(., aes(x = tournament)) +
   geom_bar() +
-  ggtitle(&quot;ount of the Number of People That Missed Each Grand Slam&quot;) +
+  ggtitle(&quot;Count of the Number of People That Missed Each Grand Slam&quot;) +
   xlab(&quot;Tournament&quot;) +
   ylab(&quot;Count of players&quot;)</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>

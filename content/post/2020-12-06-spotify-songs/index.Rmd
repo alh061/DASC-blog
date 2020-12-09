@@ -1,6 +1,6 @@
 ---
-title: Spotify Songs
-author: ~
+title: "Spotify Songs"
+author: 'null'
 date: '2020-12-06'
 slug: spotify-songs
 categories: []
@@ -13,7 +13,6 @@ tags: []
 library(here)
 library(tidyverse)
 library(ggplot2)
-library(readxl)
 
 dat <- read_csv(here::here("data", "spotify_songs.csv"))
 ```

@@ -1,6 +1,6 @@
 ---
-title: Spotify Songs
-author: ~
+title: "Spotify Songs"
+author: 'null'
 date: '2020-12-06'
 slug: spotify-songs
 categories: []
@@ -16,7 +16,6 @@ tags: []
 <pre class="r"><code>library(here)
 library(tidyverse)
 library(ggplot2)
-library(readxl)
 
 dat &lt;- read_csv(here::here(&quot;data&quot;, &quot;spotify_songs.csv&quot;))</code></pre>
 <p>This data set comes from the <code>spotify_songs.csv</code> file on the Tidy Tuesday website. The data consists of 32,833 observations of 23 variables. The variables <code>track_id</code>, <code>track_album_id</code>, and <code>playlist_id</code> are all unique IDs for the track, album, and playlist, respectively. The variables <code>track_name</code>, <code>track_artist</code>, <code>track_album_id</code>, <code>track_album_name</code>, and <code>track_album_release_date</code> are all variables that give details on the track to help with identification. The variables <code>playlist_name</code>, <code>playlist_genre</code>, and <code>playlist_subgenre</code> give information on what type of track it is, in other words what type of playlists it is on. The variables, <code>danceability</code>, <code>energy</code>, <code>key</code>, <code>loudness</code>, <code>mode</code>, <code>speechiness</code>, <code>acousticness</code>, <code>instrumentalness</code>, <code>liveness</code>, <code>valence</code>, and <code>tempo</code> describe different characteristics of the track using a numeric scale. The last variable <code>duration_ms</code> gives the duration of the track in milliseconds.</p>
