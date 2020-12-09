@@ -30,23 +30,27 @@ The second data set comes from the `grand_slams.csv` file on the Tidy Tuesday we
 The third data set comes from the `player_dob.csv` file on the Tidy Tuesday website. This data set has 105 observations of 5 variables. The `name` variable is the same as in the previous data set. For this data set, `grand_slam` indicates what tournament the player was playing at when they won their first grand slam. `date_of_first_title` gives the date at which this occurs. `date_of_birth` gives the date of birth of the player, allowing `age` to be calculated by finding the difference in number of days between the `date_of_first_title` and `date_of_birth` to give the age at the time of first grand slam championship. 
 
 ## Question 1
+
 What grand slam is most common to win a first title at?
-  * I will explore this by using the third data set to create a bar chart displaying how many players won their first grand slam at a given tournament. This could also be explored with facets such as age and gender. 
 
 ```{r, warning=FALSE, message=FALSE, error=FALSE}
 dat3 %>%
-  filter(!is.na(grand_slam)) %>%
-  ggplot(., aes(x = grand_slam)) +
+  left_join(dat2, c("name" = "name")) %>%
+  filter(!is.na(grand_slam.x)) %>%
+  ggplot(., aes(x = grand_slam.x)) +
   geom_bar() +
+  facet_wrap("gender") +
   ggtitle("Tournament at Which First Grand Slam Title Was Won") +
   ylab("Count of People") +
   xlab("Tournament")
 
 ```
+The above graph shows that for both women and men, the majority of players win their first grand slam title at the French Open. Additionally the Australian Open has the least number of first time wins for both. It makes sense that the Australian Open has the least amount of first time wins since it is the first tournament of the calendar year. With the French Open being the second tournament of the year, and taking place several months after the Australian Open, it appears that the players come more prepared to their second tournament of the year to win a title for the first time. 
+
 
 ## Question 2
+
 Do players that are younger at the time of first grand slam win more tournaments overall?
-  * I will analyze this by plotting the age at first win vs. number of rolling wins at the end of the data set. This could also be analyzed broken down into gender categories. 
   
 ```{r, error=FALSE, message=FALSE, warning=FALSE}
 
@@ -78,10 +82,12 @@ dat2 %>%
   xlab("Age (in years)") +
   ylab("Total number of wins")
 ```
+The graphs above show the total number of wins plotted against the age in years of a player when they won their first Grand Slam tournament. The first graph shows overall for both men and women, and the second graph breaks it down between men and women. In both graphs you can see that for the players that win their first tournament close to age 20, there is a significant difference in the number of grand slams that they will go on to win as opposed to those who win their first tournament in later years. This trend seems to be more predominant for women players. Although the total number of grand slams won appears to be close to the same for men and women, the drop off occurs at a later age for men, and occurs less drastically than with the change in number of wins for women. 
+
   
 ## Question 3
+
 How does the age of first title won differ between males and females?
-  * This can be analyzed by creating a histogram of the age at which the first title is won and faceting by gender. 
 
 ```{r, warning=FALSE, message=FALSE, error=FALSE}
 dat2 %>%
@@ -98,11 +104,12 @@ dat2 %>%
   ylab("Number of people")
 
 ```
+The histograms above show the distribution of the age of the players when they won their first grand slam divided into males and females. The distribution of the ages of females appears to be more skewed right while the distribution of the males appears to be much more normally distributed. This indicates that on average, females tend to be younger when winning their first grand slam tournament. This lines up with the graph show above in the previous question that women need to win a grand slam tournament at a younger age in order to have more career wins.  
 
 
 ## Question 4
+
 What tournament was most frequently missed? 
-  * This can be found by creating a bar chart of the tournaments and the counts of the number of players that were absent from the tournament. Additionally this could be split into male and female categories.
   
 ```{r, warning=FALSE, error=FALSE, message=FALSE}
 dat1 %>%
@@ -122,3 +129,4 @@ dat1 %>%
   xlab("Tournament") +
   ylab("Count of players")
 ```
+The two charts above show the total number of players that did not attend a certain tournament, and the second chart breaks it down into women and men. In all three graphics, the Australian Open is the most missed tournament. This is also interesting to look at because going back to the first question, the Australian Open was the tournament that the least number of people won their first grand slam title at. This makes sense if a large number of people are choosing to not play in the tournament. It is also interesting to note that the total number of absent players for the women is higher than for the men. 
