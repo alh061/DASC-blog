@@ -36,7 +36,8 @@ dat3 &lt;- read_csv(here::here(&quot;data&quot;, &quot;player_dob.csv&quot;))</c
   facet_wrap(&quot;gender&quot;) +
   ggtitle(&quot;Tournament at Which First Grand Slam Title Was Won&quot;) +
   ylab(&quot;Count of People&quot;) +
-  xlab(&quot;Tournament&quot;)</code></pre>
+  xlab(&quot;Tournament&quot;) +
+  theme(axis.text.x = element_text(angle = 30, vjust = 0.5))</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 The above graph shows that for both women and men, the majority of players win their first grand slam title at the French Open. Additionally the Australian Open has the least number of first time wins for both. It makes sense that the Australian Open has the least amount of first time wins since it is the first tournament of the calendar year. With the French Open being the second tournament of the year, and taking place several months after the Australian Open, it appears that the players come more prepared to their second tournament of the year to win a title for the first time.</p>
 </div>
@@ -71,7 +72,7 @@ The above graph shows that for both women and men, the majority of players win t
   xlab(&quot;Age (in years)&quot;) +
   ylab(&quot;Total number of wins&quot;)</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-3-2.png" width="672" />
-The graphs above show the total number of wins plotted against the age in years of a player when they won their first Grand Slam tournament. The first graph shows overall for both men and women, and the second graph breaks it down between men and women. In both graphs you can see that for the players that win their first tournament close to age 20, there is a significant difference in the number of grand slams that they will go on to win as opposed to those who win their first tournament in later years. This trend seems to be more predominant for women players. Although the total number of grand slams won appears to be close to the same for men and women, the drop off occurs at a later age for men, and occurs less drastically than with the change in number of wins for women.</p>
+The graphs above show the total number of wins plotted against the age in years of a player when they won their first Grand Slam tournament. The first graph shows overall for both men and women, and the second graph breaks it down between men and women. In both graphs you can see that for the players that win their first tournament close to age 20, there is a significant difference in the number of grand slams that they will go on to win as opposed to those who win their first tournament in later years. This trend seems to be more predominant for women players. Although the total number of grand slams won appears to be close to the same for men and women, the drop off occurs at a later age for men, and occurs less drastically than with the change in number of wins for women. This supports the claim that if a player wins their first Grand Slam tournament at a young age they will go on to win more tournaments in their career, on average.</p>
 </div>
 <div id="question-3" class="section level2">
 <h2>Question 3</h2>
@@ -109,8 +110,31 @@ The histograms above show the distribution of the age of the players when they w
   facet_wrap(&quot;gender&quot;) +
   ggtitle(&quot;Count of the Number of People That Missed Each Grand Slam by Gender&quot;) +
   xlab(&quot;Tournament&quot;) +
-  ylab(&quot;Count of players&quot;)</code></pre>
+  ylab(&quot;Count of players&quot;) +
+  theme(axis.text.x = element_text(angle = 30, vjust = 0.5))</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-5-2.png" width="672" />
 The two charts above show the total number of players that did not attend a certain tournament, and the second chart breaks it down into women and men. In all three graphics, the Australian Open is the most missed tournament. This is also interesting to look at because going back to the first question, the Australian Open was the tournament that the least number of people won their first grand slam title at. This makes sense if a large number of people are choosing to not play in the tournament. It is also interesting to note that the total number of absent players for the women is higher than for the men.</p>
+</div>
+<div id="question-5" class="section level2">
+<h2>Question 5</h2>
+<p>Of the players with greater than 4 overall wins, which player wins the most for each tournament?</p>
+<pre class="r"><code>dat1 %&gt;%
+  left_join(dat2, c(&quot;player&quot; = &quot;name&quot;)) %&gt;%
+  filter(outcome == &quot;Won&quot;, rolling_win_count &gt;= 4) %&gt;%
+  select(player, year.y, tournament, gender.x, rolling_win_count)</code></pre>
+<pre><code>## # A tibble: 2,888 x 5
+##    player         year.y tournament      gender.x rolling_win_count
+##    &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;                &lt;dbl&gt;
+##  1 Virginia Wade    1977 US Open         Female                   4
+##  2 Margaret Court   1970 Australian Open Female                   4
+##  3 Margaret Court   1970 Australian Open Female                   5
+##  4 Margaret Court   1970 Australian Open Female                   6
+##  5 Margaret Court   1970 Australian Open Female                   7
+##  6 Margaret Court   1971 Australian Open Female                   8
+##  7 Margaret Court   1973 Australian Open Female                   9
+##  8 Margaret Court   1973 Australian Open Female                  10
+##  9 Margaret Court   1973 Australian Open Female                  11
+## 10 Margaret Court   1970 French Open     Female                   4
+## # … with 2,878 more rows</code></pre>
 </div>
 </div>

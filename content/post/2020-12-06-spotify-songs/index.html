@@ -23,6 +23,7 @@ dat &lt;- read_csv(here::here(&quot;data&quot;, &quot;spotify_songs.csv&quot;))<
 <h2>Question 1</h2>
 <p>Is there a positive correlation between the danceability and the popularity of the track?</p>
 <pre class="r"><code>dat %&gt;%
+  filter(track_popularity &gt; 0) %&gt;%
   ggplot(., aes(x = danceability, y = track_popularity)) +
   geom_point(alpha = 0.1) +
   geom_smooth() + 
@@ -52,9 +53,11 @@ dat %&gt;%
   summarise(average_valence = mean(valence, na.rm = TRUE)) %&gt;%
   filter(!is.na(Month)) %&gt;%
   ggplot(., aes(x = Month, y = average_valence)) +
-  geom_line(group = 1) + 
+  geom_point(alpha = 0.5) + 
+  geom_line(group = 1) +
   ggtitle(&quot;Average of Valence of Songs Over Each Month&quot;) + 
-  ylab(&quot;Average of Valence&quot;)</code></pre>
+  ylab(&quot;Average of Valence&quot;) +
+  ylim(0.4, 0.6)</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 The graph above shows the average valence of songs that are released in a certain month and how it changes over the course of a year. A higher valence indicates a happier, more upbeat sounding song, so I predicted that the average valence would be higher for songs released during spring and summer months. For the most part this is true, with the exception of songs that are released in January, have the highest valence of all months. Additionally, the average valence does not change much over the course of the year, there is only about a 0.05 difference in the valence level between January, the highest month, and December, the lowest month.</p>
 </div>
