@@ -151,23 +151,14 @@ dat1 %>%
 
 The table above gives the results of the players that have won the most titles at each grand slam, and how many times they won that grand slam. 
 
-Male player with the greatest wins for each tournament:
-  
-Australian Open: Novak Djokovic (7)
-  
-French Open: Rafael Nadal (11)
-  
-Wimbledon: Roger Federer (8)
-  
-US Open: Jimmy Connors/Pete Sampras/Roger Federer (5)
-  
+Male player with the greatest wins for each tournament:   
+Australian Open: Novak Djokovic (7)   
+French Open: Rafael Nadal (11)   
+Wimbledon: Roger Federer (8)   
+US Open: Jimmy Connors/Pete Sampras/Roger Federer (5)   
 
-Female player with the greatest wins for each tournament:
-  
-Australian Open: Serena Williams (7)
-  
-French Open: Chris Evert (7)
-  
-Wimbledon: Martina Navratilova (9)
-  
-US Open: Chris Evert/Serena Williams (6)
+Female player with the greatest wins for each tournament:   
+Australian Open: Serena Williams (7)   
+French Open: Chris Evert (7)   
+Wimbledon: Martina Navratilova (9)   
+US Open: Chris Evert/Serena Williams (6)   
