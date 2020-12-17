@@ -119,22 +119,46 @@ The two charts above show the total number of players that did not attend a cert
 <h2>Question 5</h2>
 <p>Of the players with greater than 4 overall wins, which player wins the most for each tournament?</p>
 <pre class="r"><code>dat1 %&gt;%
-  left_join(dat2, c(&quot;player&quot; = &quot;name&quot;)) %&gt;%
-  filter(outcome == &quot;Won&quot;, rolling_win_count &gt;= 4) %&gt;%
-  select(player, year.y, tournament, gender.x, rolling_win_count)</code></pre>
-<pre><code>## # A tibble: 2,888 x 5
-##    player         year.y tournament      gender.x rolling_win_count
-##    &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;                &lt;dbl&gt;
-##  1 Virginia Wade    1977 US Open         Female                   4
-##  2 Margaret Court   1970 Australian Open Female                   4
-##  3 Margaret Court   1970 Australian Open Female                   5
-##  4 Margaret Court   1970 Australian Open Female                   6
-##  5 Margaret Court   1970 Australian Open Female                   7
-##  6 Margaret Court   1971 Australian Open Female                   8
-##  7 Margaret Court   1973 Australian Open Female                   9
-##  8 Margaret Court   1973 Australian Open Female                  10
-##  9 Margaret Court   1973 Australian Open Female                  11
-## 10 Margaret Court   1970 French Open     Female                   4
-## # … with 2,878 more rows</code></pre>
+  filter(outcome == &quot;Won&quot;) %&gt;%
+  group_by(tournament, player, gender) %&gt;%
+  mutate(total_wins = n()) %&gt;%
+  summarize(max_wins = max(total_wins)) %&gt;%
+  filter(max_wins &gt; 4) %&gt;%
+  arrange(desc(max_wins))</code></pre>
+<pre><code>## # A tibble: 20 x 4
+## # Groups:   tournament, player [20]
+##    tournament      player              gender max_wins
+##    &lt;chr&gt;           &lt;chr&gt;               &lt;chr&gt;     &lt;int&gt;
+##  1 French Open     Rafael Nadal        Male         11
+##  2 Wimbledon       Martina Navratilova Female        9
+##  3 Wimbledon       Roger Federer       Male          8
+##  4 Australian Open Novak Djokovic      Male          7
+##  5 Australian Open Serena Williams     Female        7
+##  6 French Open     Chris Evert         Female        7
+##  7 Wimbledon       Pete Sampras        Male          7
+##  8 Wimbledon       Serena Williams     Female        7
+##  9 Wimbledon       Steffi Graf         Female        7
+## 10 Australian Open Roger Federer       Male          6
+## 11 French Open     Björn Borg          Male          6
+## 12 French Open     Steffi Graf         Female        6
+## 13 US Open         Chris Evert         Female        6
+## 14 US Open         Serena Williams     Female        6
+## 15 US Open         Jimmy Connors       Male          5
+## 16 US Open         Pete Sampras        Male          5
+## 17 US Open         Roger Federer       Male          5
+## 18 US Open         Steffi Graf         Female        5
+## 19 Wimbledon       Björn Borg          Male          5
+## 20 Wimbledon       Venus Williams      Female        5</code></pre>
+<p>The table above gives the results of the players that have won the most titles at each grand slam, and how many times they won that grand slam.</p>
+<p>Male player with the greatest wins for each tournament:
+Australian Open: Novak Djokovic (7)
+French Open: Rafael Nadal (11)
+Wimbledon: Roger Federer (8)
+US Open: Jimmy Connors/Pete Sampras/Roger Federer (5)</p>
+<p>Female player with the greatest wins for each tournament:
+Australian Open: Serena Williams (7)
+French Open: Chris Evert (7)
+Wimbledon: Martina Navratilova (9)
+US Open: Chris Evert/Serena Williams (6)</p>
 </div>
 </div>
