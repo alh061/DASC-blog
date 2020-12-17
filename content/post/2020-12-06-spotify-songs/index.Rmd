@@ -60,13 +60,10 @@ dat %>%
   summarise(average_valence = mean(valence, na.rm = TRUE)) %>%
   filter(!is.na(Month)) %>%
   ggplot(., aes(x = Month, y = average_valence)) +
-  geom_point(alpha = 0.5) + 
   geom_line(group = 1) +
   ggtitle("Average of Valence of Songs Over Each Month") + 
   ylab("Average of Valence") +
   ylim(0.4, 0.6)
-
-
 
 ```
 The graph above shows the average valence of songs that are released in a certain month and how it changes over the course of a year. A higher valence indicates a happier, more upbeat sounding song, so I predicted that the average valence would be higher for songs released during spring and summer months. For the most part this is true, with the exception of songs that are released in January, have the highest valence of all months. Additionally, the average valence does not change much over the course of the year, there is only about a 0.05 difference in the valence level between January, the highest month, and December, the lowest month. 
@@ -111,5 +108,15 @@ dat %>%
   xlab("Duration (ms)") +
   ylab("Track Popularity")
 
+dat %>%
+  filter(track_popularity > 0.0) %>%
+  ggplot(., aes(x = duration_ms, y = track_popularity)) +
+  geom_point(alpha = 0.1) +
+  geom_smooth() +
+  ggtitle("Track Popularity vs. Track Duration in Milliseconds by Genre") +
+  xlab("Duration (ms)") +
+  ylab("Track Popularity") +
+  facet_wrap("playlist_genre")
+
 ```
-The graph above plots the popularity of a track versus the duration of the track in milliseconds. The line of best fit shows that the highest possible track popularity occurs around 2e+05 milliseconds, or about 3 minutes and 20 seconds. Additionally, it appears that the majority of tracks regardless of popularity appear to fall close to this time frame. 
+The first graph above plots the popularity of a track versus the duration of the track in milliseconds. The line of best fit shows that the highest possible track popularity occurs around 2e+05 milliseconds, or about 3 minutes and 20 seconds. Additionally, it appears that the majority of tracks regardless of popularity appear to fall close to this time frame. The second graph shows the same things, but broken down by genre of the playlist the song is on. From this graphic we can see that for some genres, specifically rock tracks, the duration of the song has little to no impact on the popularity. However, for other genres like EDM and R&B, a shorter song has a significantly higher popularity rating. All genres however start to how at least some decline in track popularity once the song is longer than about 3 and a half minutes. 
